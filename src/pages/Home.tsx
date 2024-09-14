@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { apiBaseUrl } from "../config";
 
 const Home = () => {
   const { user } = useAuthContext();
@@ -7,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     if (!user) return;
     const authorizationTest = async () => {
-      const response = await fetch("/api/authorizationTest/", {
+      const response = await fetch(apiBaseUrl + "/api/authorizationTest/", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();

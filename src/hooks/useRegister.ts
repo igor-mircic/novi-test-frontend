@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { apiBaseUrl } from "../config";
 
 export const useRegister = () => {
   const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ export const useRegister = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("/api/user/register", {
+    const response = await fetch(apiBaseUrl + "/api/user/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, lastName, email, password }),
